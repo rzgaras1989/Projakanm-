@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وەسڵی نوسینگەی دەربەندیخان</title>
+    <style>
+        body { margin: 0; padding: 0; background-color: #f0f0f0; font-family: 'Tahoma', sans-serif; direction: rtl; display: flex; justify-content: center; }
+        .bill-wrapper { width: 100%; max-width: 420px; padding: 10px; }
+        .bill-card { background-color: #e8f5e9; border: 1px solid #c8e6c9; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header { text-align: center; border-bottom: 1px solid #2e7d32; margin-bottom: 12px; padding-bottom: 8px; }
+        .header h1 { margin: 0; font-size: 20px; color: #2e7d32; }
+        .phones { font-size: 12px; font-weight: bold; }
+        .info-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; margin-bottom: 12px; }
+        .input-flat { border: none; border-bottom: 1px solid #999; background: transparent; width: 110px; font-size: 14px; outline: none; }
+        .date-time-row { display: flex; justify-content: space-between; font-size: 11px; color: #444; margin-bottom: 12px; background: rgba(255,255,255,0.5); padding: 6px; }
+        table { width: 100%; border-collapse: collapse; background: white; table-layout: fixed; }
+        th, td { border: 1px solid #333; padding: 10px 2px; text-align: center; font-size: 13px; }
+        th { color: white; font-weight: bold; }
+        .green-head { background-color: #43a047; }
+        .blue-head { background-color: #1e88e5; }
+        .currency-select { width: 100%; border: none; background: transparent; font-size: 12px; text-align: center; font-weight: bold; outline: none; -webkit-appearance: none; appearance: none; cursor: pointer; }
+        .price-input { width: 95%; border: none; background: transparent; font-size: 14px; text-align: center; outline: none; }
+        .footer { margin-top: 25px; display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; }
+        .developer-tag { text-align: center; font-size: 9px; color: #777; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 5px; }
+        .print-btn { width: 100%; padding: 14px; background: #2e7d32; color: white; border: none; border-radius: 6px; margin-top: 15px; font-weight: bold; font-size: 16px; cursor: pointer; }
+        @media print { .print-btn { display: none; } body { background: white; padding: 0; } .bill-card { box-shadow: none; border: 1px solid #000; width: 100%; background-color: white !important; } }
+    </style>
+</head>
+<body>
+
+<div class="bill-wrapper">
+  <div class="bill-card">
+    <div class="header">
+      <h1>نوسینگەی دەربەندیخان</h1>
+      <div class="phones">07702111022 | 07502294301</div>
+    </div>
+    <div class="info-row">
+      <span>وەرگر: <b>دەربەندیخان</b></span>
+      <span>کڕیار: <input type="text" class="input-flat" placeholder="..."></span>
+    </div>
+    <div class="date-time-row">
+      <span id="date"></span>
+      <span id="billCode"></span>
+      <span id="time"></span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="green-head">بڕی وەرگیراو</th>
+          <th class="green-head">دراو</th>
+          <th class="blue-head">بڕی فرۆشراو</th>
+          <th class="blue-head">دراو</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="number" class="price-input" placeholder="0"></td>
+          <td>
+            <select class="currency-select">
+              <option>دۆلار ($)</option>
+              <option>دینار (IQD)</option>
+              <option>تمەن (IRT)</option>
+              <option>پاوەن (£)</option>
+              <option>یۆڕۆ (€)</option>
+            </select>
+          </td>
+          <td><input type="number" class="price-input" placeholder="0"></td>
+          <td>
+            <select class="currency-select">
+              <option>دینار (IQD)</option>
+              <option>دۆلار ($)</option>
+              <option>تمەن (IRT)</option>
+              <option>پاوەن (£)</option>
+              <option>یۆڕۆ (€)</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      <span>بڕواپێکراوی ئێوەین</span>
+      <span>واژۆ: __________</span>
+    </div>
+    <div class="developer-tag">BY: Asan Plus group</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">چاپکردنی وەسڵ</button>
+</div>
+
+<script>
+    function generateBillInfo() {
+      const now = new Date();
+      document.getElementById('date').innerText = "بەروار: " + now.toLocaleDateString('en-GB');
+      document.getElementById('time').innerText = "کات: " + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('billCode').innerText = "کۆد: #" + Math.floor(10000 + Math.random() * 90000);
+    }
+    window.onload = generateBillInfo;
+</script>
+
+</body>
+</html>
